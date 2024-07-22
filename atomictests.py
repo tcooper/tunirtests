@@ -134,11 +134,11 @@ class TestAtomicRollbackPostReboot(unittest.TestCase):
 class TestAtomicDockerImage(unittest.TestCase):
 
     def test_docker_image(self):
-        out, err, eid = system('sudo docker pull fedora:latest')
+        out, err, eid = system('sudo docker pull rockylinux:latest')
         self.assertFalse(err)
         time.sleep(10)
         out, err, eid = system(
-            'sudo docker run --rm fedora:latest '
+            'sudo docker run --rm rockylinux:latest '
             'true && echo "PASS" || echo "FAIL"')
         out = out.decode('utf-8')
         self.assertEqual(out, 'PASS\n')
@@ -173,7 +173,7 @@ class Testreadonlymount(unittest.TestCase):
 class TestDockerDaemon(unittest.TestCase):
 
     def test_docker(self):
-        out, err, eid = system('docker run --rm  --privileged -v /run:/run -v /:/host --net=host --entrypoint=/bin/bash fedora:23 -c "chroot /host/ docker version"')
+        out, err, eid = system('docker run --rm  --privileged -v /run:/run -v /:/host --net=host --entrypoint=/bin/bash rockylinux:latest -c "chroot /host/ docker version"')
         self.assertEqual(eid, 0, out+err)
         out = out.decode('utf-8')
         self.assertIn('Server:\n Version', out)

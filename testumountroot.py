@@ -6,7 +6,7 @@ class TestUmountRoot(unittest.TestCase):
 
     """
     This test is to check if user can
-    unmount the "/" partition in fedora
+    unmount the "/" partition in Rocky Linux
     """
 
     def test_umountroot(self):

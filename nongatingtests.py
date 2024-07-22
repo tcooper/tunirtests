@@ -226,12 +226,12 @@ class TunirNonGatingtestcurl(unittest.TestCase):
     def test_curl(self):
         """Tests that curl can access http-host and retrieve index.html"""
 
-        URL = "http://fedoraproject.org"
+        URL = "http://rockylinux.org"
 
         # Querying url
         out, err, eid = system('curl --location -s %s' % URL)
         out = out.decode('utf-8')
-        self.assertIn('Fedora', out)
+        self.assertIn('Rocky', out)
 
 
 class TunirNonGatingtestaudit(unittest.TestCase):
