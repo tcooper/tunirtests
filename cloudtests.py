@@ -28,8 +28,8 @@ class TestBase(unittest.TestCase):
     @unittest.skipIf(if_atomic(), "It is an Atomic image.")
     def test_packageinstall(self):
         "Tests package install using dnf"
-        system('dnf install pss -y')
-        out, err, eid = system('ls -l /usr/bin/pss')
+        system('dnf install watchdog -y')
+        out, err, eid = system('ls -l /usr/sbin/watchdog')
         self.assertEqual(eid, 0, err)
 
 # https://github.com/kushaldas/tunirtests/issues/17
