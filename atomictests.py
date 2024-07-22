@@ -3,7 +3,6 @@ import os
 import re
 import time
 from .testutils import system, if_atomic, if_upgrade, if_rollback
-from .testutils import get_fedora_release
 
 @unittest.skipUnless(if_atomic(), "It's not an atomic image")
 class TestAtomic01Status(unittest.TestCase):
@@ -47,15 +46,6 @@ class TestDockerStorageSetup(unittest.TestCase):
         self.assertTrue(
             re.search(r'atomicos-root.*\d+(?:.\d+)?G.*lvm.*/sysroot.*\n', out)
         )
-
-        # For f27 we use overlay2 on the root filesystem. Nothing to check
-
-        # For f26 we use a separate LVM with XFS on top for docker+overlay
-        if get_fedora_release() in ["26"]:
-            self.assertTrue(
-                re.search(r'atomicos-docker--root--lv.*\d+(?:.\d+)?G.*lvm', out)
-            )
-
 
 
 @unittest.skipUnless(if_atomic(), "It's not an Atomic image")

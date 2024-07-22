@@ -52,9 +52,9 @@ def if_rollback():
         return True
     return False
 
-def get_fedora_release():
-    "Finds the fedora version in str"
-    ver = "24"
+def get_rocky_release():
+    "Finds the Rocky Linux version in str"
+    ver = "9"
     with open("/etc/os-release") as fobj:
         data = fobj.readlines()
 
@@ -62,6 +62,8 @@ def get_fedora_release():
         line = line.strip()
         if line.startswith("VERSION_ID="):
             words = line.split("=")
-            ver = words[1]
+            full_ver = words[1]
+            ver = major = full_ver.split(".")[0]
+            minor = full_ver.split(".")[1]
             return ver
     return ver

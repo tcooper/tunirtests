@@ -3,10 +3,10 @@ From https://fedoraproject.org/wiki/QA:Testcase_base_service_manipulation.
 
 """
 import unittest
-from .testutils import get_fedora_release, system
+from .testutils import get_rocky_release, system
 
 SERVICE = "chronyd"
-if get_fedora_release() == "24":
+if get_rocky_release() == "9":
     SERVICE = "crond"
 
 class TestServiceManipulation(unittest.TestCase):
